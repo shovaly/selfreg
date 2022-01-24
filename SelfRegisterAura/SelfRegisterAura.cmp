@@ -1,0 +1,19 @@
+<aura:component controller="SelfRegisterApexController" implements="forceCommunity:availableForAllPageTypes" access="global">
+<aura:attribute name="verificationId" type="String" />
+<aura:attribute name="controllerMessage" type="String" />
+<aura:attribute name="isFirstStage" type="boolean" default="true"/>
+<aura:attribute name="emailInput" type="String" />
+<aura:attribute name="codeInput" type="String" />
+
+<h1>{!v.controllerMessage}</h1>
+<!--Input EMAIL-->
+<aura:if isTrue="{!v.isFirstStage}">
+    
+    <lightning:input type="text" name="emailInput" label="Email" value="{!v.emailInput}"  placeholder="username@example.com" />
+    <lightning:button label="Get verification Code" onclick="{!c.handleSendEmail}"/>
+    <aura:set attribute="else">
+        <lightning:input type="text" name="emailInput" label="Verification Code" value="{!v.codeInput}"/>
+        <lightning:button label="Apply verification Code" onclick="{!c.handleRegVerify}"/><br />
+    </aura:set>
+</aura:if> 
+</aura:component>
